@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GSAP Animated Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      color: white;
+      text-align: center;
+    }
+    header, footer {
+      background-color: #111;
+      padding: 1rem;
+      color: #fff;
+      text-align: center;
+    }
+    .section1 { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
+    .section2 { background: linear-gradient(135deg, #6a11cb, #2575fc); }
+    .section3 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .section4 { background: linear-gradient(135deg, #ff9966, #ff5e62); }
+    .section5 { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+    .section6 { background: linear-gradient(135deg, #f7971e, #ffd200); }
+    img {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      margin-top: 1rem;
+    }
+    h1, h2 {
+      margin-bottom: 1rem;
+    }
+    p {
+      max-width: 600px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Awesome Landing Page</h1>
+  </header>
+
+  <section class="section1" id="home">
+    <h2>Welcome to the Future</h2>
+    <p>Explore modern animations with GSAP and learn to create stunning user experiences.</p>
+    <img src="https://source.unsplash.com/featured/?technology" alt="Technology" />
+  </section>
+
+  <section class="section2" id="features">
+    <h2>Features</h2>
+    <p>We build colorful, animated, and informative websites with smooth transitions and engaging visuals.</p>
+    <img src="https://source.unsplash.com/featured/?webdesign" alt="Web Design" />
+  </section>
+
+  <section class="section3" id="about">
+    <h2>About Us</h2>
+    <p>We're passionate about animations and user interface design. This page is powered by HTML, CSS, and GSAP.</p>
+    <img src="https://source.unsplash.com/featured/?developer" alt="Developer" />
+  </section>
+
+  <section class="section4" id="contact">
+    <h2>Contact Us</h2>
+    <p>Reach out to us for your next colorful, animated, and informative website. Let's create magic together!</p>
+    <img src="https://source.unsplash.com/featured/?contact" alt="Contact" />
+  </section>
+
+  <section class="section5" id="services">
+    <h2>Our Services</h2>
+    <p>We offer full-stack development, UI/UX design, performance optimization, and custom animation solutions for your web projects.</p>
+    <img src="https://source.unsplash.com/featured/?services" alt="Services" />
+  </section>
+
+  <section class="section6" id="team">
+    <h2>Meet the Team</h2>
+    <p>Our creative team of designers and developers love transforming ideas into reality with powerful animations and elegant code.</p>
+    <img src="https://source.unsplash.com/featured/?teamwork" alt="Team" />
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Animated Studio. Built with ❤️ using GSAP.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Header entrance
+    gsap.from("header h1", { y: -50, opacity: 0, duration: 1 });
+
+    // Section-specific animations
+    const animations = [
+      { selector: ".section1", h2: { x: -100 }, p: { x: 100 }, img: { scale: 0.5 } },
+      { selector: ".section2", h2: { y: -80 }, p: { y: 80 }, img: { rotate: 45 } },
+      { selector: ".section3", h2: { scale: 0.8 }, p: { opacity: 0, y: 50 }, img: { y: -100 } },
+      { selector: ".section4", h2: { rotateX: 90 }, p: { x: -100 }, img: { x: 200 } },
+      { selector: ".section5", h2: { y: -60 }, p: { x: 60 }, img: { scale: 0.6 } },
+      { selector: ".section6", h2: { rotateY: 90 }, p: { y: 80 }, img: { rotate: -45 } }
+    ];
+
+    animations.forEach(({ selector, h2, p, img }) => {
+      gsap.from(`${selector} h2`, {
+        ...h2,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: selector,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      gsap.from(`${selector} p`, {
+        ...p,
+        opacity: 0,
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: selector,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      gsap.from(`${selector} img`, {
+        ...img,
+        opacity: 0,
+        delay: 0.4,
+        scrollTrigger: {
+          trigger: selector,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+
+    // Footer animation
+    gsap.from("footer p", {
+      y: 30,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "footer",
+        start: "top bottom",
+        toggleActions: "play none none none"
+      }
+    });
+  </script>
+</body>
+</html>
