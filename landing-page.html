@@ -52,47 +52,101 @@
       line-height: 1.6;
     }
   </style>
+
+<style>
+  nav {
+    margin-top: 0.5rem;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .nav-links li a:hover {
+    color: #ff7eb3;
+  }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #111;
+  padding: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+</style>
 </head>
 <body>
 
   <header>
-    <h1>Awesome Landing Page</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+    </nav>
   </header>
 
   <section class="section1" id="home">
     <h2>Welcome to the Future</h2>
     <p>Explore modern animations with GSAP and learn to create stunning user experiences.</p>
-    <img src="https://source.unsplash.com/featured/?technology" alt="Technology" />
+    <img src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2022/03/technology-trend-freepik-1647963838.jpg" alt="Technology" />
   </section>
 
   <section class="section2" id="features">
     <h2>Features</h2>
     <p>We build colorful, animated, and informative websites with smooth transitions and engaging visuals.</p>
-    <img src="https://source.unsplash.com/featured/?webdesign" alt="Web Design" />
+    <img src="https://www.theforage.com/blog/wp-content/uploads/2022/09/tech-companies.jpg" alt="Web Design" />
   </section>
 
   <section class="section3" id="about">
     <h2>About Us</h2>
     <p>We're passionate about animations and user interface design. This page is powered by HTML, CSS, and GSAP.</p>
-    <img src="https://source.unsplash.com/featured/?developer" alt="Developer" />
+    <img src="https://www.theforage.com/blog/wp-content/uploads/2022/09/tech-companies.jpg" alt="Developer" />
   </section>
 
   <section class="section4" id="contact">
     <h2>Contact Us</h2>
     <p>Reach out to us for your next colorful, animated, and informative website. Let's create magic together!</p>
-    <img src="https://source.unsplash.com/featured/?contact" alt="Contact" />
+    <img src="https://www.theforage.com/blog/wp-content/uploads/2022/09/tech-companies.jpg" alt="Contact" />
   </section>
 
   <section class="section5" id="services">
     <h2>Our Services</h2>
     <p>We offer full-stack development, UI/UX design, performance optimization, and custom animation solutions for your web projects.</p>
-    <img src="https://source.unsplash.com/featured/?services" alt="Services" />
+    <img src="https://www.theforage.com/blog/wp-content/uploads/2022/09/tech-companies.jpg" alt="Services" />
   </section>
 
   <section class="section6" id="team">
     <h2>Meet the Team</h2>
     <p>Our creative team of designers and developers love transforming ideas into reality with powerful animations and elegant code.</p>
-    <img src="https://source.unsplash.com/featured/?teamwork" alt="Team" />
+    <img src="https://www.theforage.com/blog/wp-content/uploads/2022/09/tech-companies.jpg" alt="Team" />
   </section>
 
   <footer>
@@ -118,38 +172,39 @@
     ];
 
     animations.forEach(({ selector, h2, p, img }) => {
-      gsap.from(`${selector} h2`, {
-        ...h2,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: selector,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
+  gsap.from(`${selector} h2`, {
+    ...h2,
+    opacity: 0,
+    scrollTrigger: {
+      trigger: selector,
+      start: "top 80%",
+      toggleActions: "restart none none none"
+    }
+  });
 
-      gsap.from(`${selector} p`, {
-        ...p,
-        opacity: 0,
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: selector,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
+  gsap.from(`${selector} p`, {
+    ...p,
+    opacity: 0,
+    delay: 0.2,
+    scrollTrigger: {
+      trigger: selector,
+      start: "top 80%",
+      toggleActions: "restart none none none"
+    }
+  });
 
-      gsap.from(`${selector} img`, {
-        ...img,
-        opacity: 0,
-        delay: 0.4,
-        scrollTrigger: {
-          trigger: selector,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
-    });
+  gsap.from(`${selector} img`, {
+    ...img,
+    opacity: 0,
+    delay: 0.4,
+    scrollTrigger: {
+      trigger: selector,
+      start: "top 80%",
+      toggleActions: "restart none none none"
+    }
+  });
+});
+
 
     // Footer animation
     gsap.from("footer p", {
